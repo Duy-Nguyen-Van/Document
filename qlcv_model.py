@@ -21,8 +21,8 @@ class Document(models.Model):
      file = fields.Binary('File',required=True)
      state = fields.Selection([
           ('draft','Draft'),
-          ('published','Published'),
-          ('sent','Sent'),
+          # ('published','Published'),
+          # ('sent','Sent'),
           ('done','Done'),
      ],string='Document Status', readonly=True, copy=False, store=True, default='draft')
 
@@ -43,6 +43,12 @@ class Document_Sent(models.Model):
      _inherit = 'doc.task'
      _name = 'doc.sent'
      type = fields.Char('Type', required=True, default='Sent', readonly=True)
+     state = fields.Selection([
+          ('draft', 'Draft'),
+          ('published', 'Published'),
+          ('sent', 'Sent'),
+          ('done', 'Done'),
+     ], string='Document Status', readonly=True, copy=False, store=True, default='draft')
 
 @api.multi
 def import_file(self, cr, uid, ids, context=None):
