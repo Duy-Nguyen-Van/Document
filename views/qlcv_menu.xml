@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<data>
+    <!-- Action to open Document Task list -->
+    <act_window id="action_doc_task"
+                name="Document"
+                res_model="doc.task"
+                view_mode="tree,form"/>
+
+    <act_window id="action_department_task"
+                name="Department"
+                res_model="hr.department"
+                view_mode="tree,form"/>
+
+    <act_window id="action_report_task"
+                name="Report"
+                res_model="doc.task"
+                view_mode="tree,form"/>
+
+    <act_window id="action_doc_type_view"
+                name="Document Type"
+                res_model="doc.type"
+                view_mode="tree,form"/>
+
+    <!-- Menu item to open Document Task list-->
+    <menuitem id="menu_doc_task"
+              name="Doc"
+              action="action_doc_task"/>
+
+    <menuitem id="menu_doc_task_view"
+              name="Document"
+              sequence="5"
+              action="qlcv.action_doc_task"
+              parent="menu_doc_task"/>
+
+    <menuitem id="menu_doc_arrvied_task_view"
+              name="Document Arrived"
+              sequence="10"
+              action="qlcv.action_doc_task"
+              parent="menu_doc_task_view"/>
+
+    <menuitem id="menu_doc_sent_task_view"
+              name="Document Sent"
+              sequence="10"
+              action="qlcv.action_doc_task"
+              parent="menu_doc_task_view"/>
+
+    <menuitem id="menu_department_task_view"
+              name="Department"
+              sequence="5"
+              action="qlcv.action_department_task"
+              parent="menu_doc_task"/>
+
+    <menuitem id="menu_report_task_view"
+              name="Report"
+              sequence="6"
+              action="qlcv.action_report_task"
+              parent="menu_doc_task"/>
+
+    <menuitem id="menu_config_task_view"
+              name="Configuration"
+              sequence="7"
+              parent="menu_doc_task"/>
+
+    <menuitem id="doc_type_task_view"
+              name="Document Type"
+              sequence="10"
+              action="qlcv.action_doc_type_view"
+              parent="menu_config_task_view"/>
+
+</data>
