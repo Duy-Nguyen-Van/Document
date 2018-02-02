@@ -50,12 +50,12 @@ class Document_Sent(models.Model):
           ('done', 'Done'),
      ], string='Document Status', readonly=True, copy=False, store=True, default='draft')
 
-@api.multi
-def import_file(self, cr, uid, ids, context=None):
-    fileobj = TemporaryFile('w+')
-    fileobj.write(base64.decodestring(data))
-    # your treatment
-    return True
+# @api.multi
+# def import_file(self, cr, uid, ids, context=None):
+#     fileobj = TemporaryFile('w+')
+#     fileobj.write(base64.decodestring(data))
+#     # your treatment
+#     return True
 
 
 
