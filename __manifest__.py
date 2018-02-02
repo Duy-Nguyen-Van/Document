@@ -2,7 +2,7 @@
 	'name': 'Document Management',
 	'description': 'Manage your personal Document tasks.',
 	'author': 'Duy Nguyen',
-	'depends': ['base','mail'],
+	'depends': ['base','mail','hr'],
 	'application': True,
 	# 'images':['images/icon.png'],
 	'data': [
