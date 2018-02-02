@@ -15,9 +15,9 @@ class Document(models.Model):
      sender_id = fields.Many2one('hr.employee' , 'Sender')
      customer = fields.Many2one('res.partner','Customer',required=True)
      department_id = fields.Many2one('hr.department' , 'Department')
-     # type = fields.Char('Type',required=True)
+     type = fields.Char('Type',required=True, default='Arrived', readonly=True)
      # notes = fields.Text('Note')
-     type_id = fields.Many2one('doc.type','Type',required=True)
+     # type_id = fields.Many2one('doc.type','Type',required=True)
      file = fields.Binary('File',required=True)
      state = fields.Selection([
           ('draft','Draft'),
@@ -33,15 +33,16 @@ class Document(models.Model):
 #      iden = fields.Char('ID',required=True)
 #      name = fields.Char('Name',required=True)
 
-class Document_Type(models.Model):
-     _name = 'doc.type'
-     _description = 'Document Type'
-     name = fields.Char('Name',required=True)
-     des = fields.Char('Description')
+# class Document_Type(models.Model):
+#      _name = 'doc.type'
+#      _description = 'Document Type'
+#      name = fields.Char('Name',required=True)
+#      des = fields.Char('Description')
 
 class Document_Sent(models.Model):
      _inherit = 'doc.task'
      _name = 'doc.sent'
+     type = fields.Char('Type', required=True, default='Sent', readonly=True)
 
 @api.multi
 def import_file(self, cr, uid, ids, context=None):

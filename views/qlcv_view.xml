@@ -4,7 +4,7 @@
         <field name="name">Document Form</field>
         <field name="model">doc.task</field>
         <field name="arch" type="xml">
-        <form string="Document">
+        <form string="Document Arrived">
             <header>
                 <button name ="action_document_send" type="object"
                 string="Send by Email" states="draft" class="btn-primary"/>
@@ -18,7 +18,7 @@
                         <field name="name"/>
                         <field name="number"/>
                         <field name="customer"/>
-                        <field name="type_id"/>
+                        <field name="type"/>
                         <field name="file"/>
                     </group>
                     <group name="group_right">
@@ -60,11 +60,83 @@
         <field name="name">Document Tree</field>
         <field name="model">doc.task</field>
         <field name="arch" type="xml">
-                <tree string="Document">
+                <tree string="Document Arrived">
                     <field name="name"/>
                     <field name="number"/>
                     <field name="customer"/>
-                    <field name="type_id"/>
+                    <field name="type"/>
+                    <field name="sign_date"/>
+                    <field name="sent_date"/>
+                    <field name="arrived_date"/>
+                </tree>
+        </field>
+    </record>
+
+    <record id="view_form_doc_sent" model="ir.ui.view">
+        <field name="name">Document Form</field>
+        <field name="model">doc.sent</field>
+        <field name="arch" type="xml">
+        <form string="Document Sent">
+            <header>
+                <button name ="action_document_send" type="object"
+                string="Send by Email" states="draft" class="btn-primary"/>
+                <button name="print_document" type="object"
+                string="Print" states="draft" class="btn-primary"/>
+                <field name="state" widget="statusbar" statusbar_visible="draft,published,sent,done"/>
+            </header>
+            <sheet>
+                <group name="group_top">
+                    <group name="group_left">
+                        <field name="name"/>
+                        <field name="number"/>
+                        <field name="customer"/>
+                        <field name="type"/>
+                        <field name="file"/>
+                    </group>
+                    <group name="group_right">
+                        <field name="sign_date"/>
+                        <field name="sent_date"/>
+                        <field name="arrived_date"/>
+                    </group>
+                </group>
+                <notebook>
+                    <!--<page string="File">-->
+                        <!--<field name="file"/>-->
+                    <!--</page>-->
+                    <!--<field name="notes" placeholder="Write Note..." colspan="4"/>-->
+                    <page string=" Other Information">
+                        <group name="group_top">
+                            <group string="Solution" name="group_left">
+                                <field name="composer_id"/>
+                                <field name="approver_id"/>
+                                <field name="sender_id"/>
+                            </group>
+                            <group string="Department" name="group_right">
+                                <field name="department_id"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </sheet>
+            <sheet position="after">
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </sheet>
+        </form>
+        </field>
+    </record>
+
+    <record id="view_tree_doc_sent" model="ir.ui.view">
+        <field name="name">Document Tree</field>
+        <field name="model">doc.sent</field>
+        <field name="arch" type="xml">
+                <tree string="Document Sent">
+                    <field name="name"/>
+                    <field name="number"/>
+                    <field name="customer"/>
+                    <field name="type"/>
                     <field name="sign_date"/>
                     <field name="sent_date"/>
                     <field name="arrived_date"/>
@@ -133,48 +205,48 @@
         </field>
     </record>
 
-    <record id="view_form_document_type_task" model="ir.ui.view">
-        <field name="name">Document Type Form</field>
-        <field name="model">doc.type</field>
-        <field name="arch" type="xml">
-            <form string="Document Type">
-                <sheet>
-                    <group name="group_top">
-                        <field name="name"/>
-                        <field name="des"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
+    <!--<record id="view_form_document_type_task" model="ir.ui.view">-->
+        <!--<field name="name">Document Type Form</field>-->
+        <!--<field name="model">doc.type</field>-->
+        <!--<field name="arch" type="xml">-->
+            <!--<form string="Document Type">-->
+                <!--<sheet>-->
+                    <!--<group name="group_top">-->
+                        <!--<field name="name"/>-->
+                        <!--<field name="des"/>-->
+                    <!--</group>-->
+                <!--</sheet>-->
+            <!--</form>-->
+        <!--</field>-->
+    <!--</record>-->
 
-    <record id="view_tree_document_type_task" model="ir.ui.view">
-        <field name="name">Document Type Tree</field>
-        <field name="model">doc.type</field>
-        <field name="arch" type="xml">
-            <tree string="Document Type">
-                <field name="name"/>
-            </tree>
-        </field>
-    </record>
+    <!--<record id="view_tree_document_type_task" model="ir.ui.view">-->
+        <!--<field name="name">Document Type Tree</field>-->
+        <!--<field name="model">doc.type</field>-->
+        <!--<field name="arch" type="xml">-->
+            <!--<tree string="Document Type">-->
+                <!--<field name="name"/>-->
+            <!--</tree>-->
+        <!--</field>-->
+    <!--</record>-->
 
-    <record id="view_filter_doc_task" model="ir.ui.view">
-        <field name="name">Documment Filter</field>
-        <field name="model">doc.task</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="name"/>
-                <filter string="Arrived" name="arrived_filter"
-                        domain="[('type_id','=','Arrived')]"/>
-                <filter string="Sent" name="sent_filter"
-                        domain="[('type_id','=','Sent')]"/>
-            </search>
-        </field>
-    </record>
+    <!--<record id="view_filter_doc_task" model="ir.ui.view">-->
+        <!--<field name="name">Documment Filter</field>-->
+        <!--<field name="model">doc.task</field>-->
+        <!--<field name="arch" type="xml">-->
+            <!--<search>-->
+                <!--<field name="name"/>-->
+                <!--<filter string="Arrived" name="arrived_filter"-->
+                        <!--domain="[('type','=','Arrived')]"/>-->
+                <!--<filter string="Sent" name="sent_filter"-->
+                        <!--domain="[('type','=','Sent')]"/>-->
+            <!--</search>-->
+        <!--</field>-->
+    <!--</record>-->
 
-    <record model="ir.actions.act_window" id="action_doc_task">
-        <field name="context">
-            {'search_default_arrived_filter':True}
-        </field>
-    </record>
+    <!--<record model="ir.actions.act_window" id="action_doc_task">-->
+        <!--<field name="context">-->
+            <!--{'search_default_arrived_filter':True}-->
+        <!--</field>-->
+    <!--</record>-->
 </odoo>
