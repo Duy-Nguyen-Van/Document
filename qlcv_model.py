@@ -43,12 +43,12 @@ class Document_Sent(models.Model):
      _inherit = 'doc.task'
      _name = 'doc.sent'
 
-@api.multi
-def import_file(self, cr, uid, ids, context=None):
-    fileobj = TemporaryFile('w+')
-    fileobj.write(base64.decodestring(data))
-    # your treatment
-    return True
+# @api.multi
+# def import_file(self, cr, uid, ids, context=None):
+#     fileobj = TemporaryFile('w+')
+#     fileobj.write(base64.decodestring(data))
+#     # your treatment
+#     return True
 
 
 
