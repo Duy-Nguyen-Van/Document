@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields
-
+from datetime import datetime
 class Document(models.Model):
      _name = 'doc.task'
      _description = 'Document'
@@ -9,10 +9,10 @@ class Document(models.Model):
      # number = fields.Char('Number')
      sign_date = fields.Datetime('Sign Date')
      sent_date = fields.Datetime('Sent Date')
-     arrived_date = fields.Datetime('Arrived Date')
-     composer_id = fields.Many2one('hr.employee' , 'Composer')
-     approver_id = fields.Many2one('hr.employee' , 'Approver')
-     sender_id = fields.Many2one('hr.employee' , 'Sender')
+     arrived_date = fields.Datetime('Arrived Date',default=datetime.today())
+     # composer_id = fields.Many2one('hr.employee' , 'Composer')
+     # approver_id = fields.Many2one('hr.employee' , 'Approver')
+     # sender_id = fields.Many2one('hr.employee' , 'Sender')
      customer = fields.Many2one('res.partner','Customer',required=True)
      department_id = fields.Many2one('hr.department' , 'Department')
      type = fields.Char('Type',required=True, default='Arrived', readonly=True)
@@ -43,6 +43,9 @@ class Document_Sent(models.Model):
      _inherit = 'doc.task'
      _name = 'doc.sent'
      type = fields.Char('Type', required=True, default='Sent', readonly=True)
+     composer_id = fields.Many2one('hr.employee', 'Composer')
+     approver_id = fields.Many2one('hr.employee', 'Approver')
+     sender_id = fields.Many2one('hr.employee', 'Sender')
      state = fields.Selection([
           ('draft', 'Draft'),
           ('published', 'Published'),

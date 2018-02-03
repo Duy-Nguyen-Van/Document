@@ -34,12 +34,12 @@
                     <!--<field name="notes" placeholder="Write Note..." colspan="4"/>-->
                     <page string=" Other Information">
                         <group name="group_top">
-                            <group string="Solution" name="group_left">
-                                <field name="composer_id"/>
-                                <field name="approver_id"/>
-                                <field name="sender_id"/>
-                            </group>
-                            <group string="Department" name="group_right">
+                            <!--<group string="Solution" name="group_right">-->
+                                <!--<field name="composer_id"/>-->
+                                <!--<field name="approver_id"/>-->
+                                <!--<field name="sender_id"/>-->
+                            <!--</group>-->
+                            <group string="Department" name="group_left">
                                 <field name="department_id"/>
                             </group>
                         </group>
@@ -106,13 +106,13 @@
                     <!--<field name="notes" placeholder="Write Note..." colspan="4"/>-->
                     <page string=" Other Information">
                         <group name="group_top">
-                            <group string="Solution" name="group_left">
+                            <group string="Department" name="group_left">
+                                <field name="department_id"/>
+                            </group>
+                            <group string="Solution" name="group_right">
                                 <field name="composer_id"/>
                                 <field name="approver_id"/>
                                 <field name="sender_id"/>
-                            </group>
-                            <group string="Department" name="group_right">
-                                <field name="department_id"/>
                             </group>
                         </group>
                     </page>
