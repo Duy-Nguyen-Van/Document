@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import models, fields,api
 from datetime import datetime
+
 class Document(models.Model):
      _name = 'doc.task'
      _description = 'Document'
@@ -59,6 +60,13 @@ def import_file(self, cr, uid, ids, context=None):
     fileobj.write(base64.decodestring(data))
     # your treatment
     return True
+
+
+@api.multi
+def send_mail_template(self):
+     # Now let us find the e-mail template
+     template = self.env.ref('mail_template_demo.example_email_template')
+     self.env['mail.template'].browse(template.id).send_mail(self.id)
 
 
 
