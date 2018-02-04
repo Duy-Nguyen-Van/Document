@@ -7,6 +7,7 @@
 	# 'images':['images/icon.png'],
 	'data': [
 		'views/qlcv_menu.xml',
-        'views/qlcv_view.xml'
+        'views/qlcv_view.xml',
+		'views/qlcv_access_rule.xml'
 	],
 }
