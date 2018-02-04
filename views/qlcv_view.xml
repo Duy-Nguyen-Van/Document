@@ -16,8 +16,8 @@
                 <group name="group_top">
                     <group name="group_left">
                         <field name="name"/>
-                        <!--<field name="number"/>-->
-                        <field name="customer"/>
+                        <field name="number"/>
+                        <field name="organization"/>
                         <field name="type"/>
                         <field name="file"/>
                     </group>
@@ -62,8 +62,8 @@
         <field name="arch" type="xml">
                 <tree string="Document Arrived">
                     <field name="name"/>
-                    <!--<field name="number"/>-->
-                    <field name="customer"/>
+                    <field name="number"/>
+                    <field name="organization"/>
                     <field name="type"/>
                     <!--<field name="sign_date"/>-->
                     <!--<field name="sent_date"/>-->
@@ -88,8 +88,8 @@
                 <group name="group_top">
                     <group name="group_left">
                         <field name="name"/>
-                        <!--<field name="number"/>-->
-                        <field name="customer"/>
+                        <field name="number"/>
+                        <field name="organization"/>
                         <field name="type"/>
                         <field name="file"/>
                     </group>
@@ -134,8 +134,8 @@
         <field name="arch" type="xml">
                 <tree string="Document Sent">
                     <field name="name"/>
-                    <!--<field name="number"/>-->
-                    <field name="customer"/>
+                    <field name="number"/>
+                    <field name="organization"/>
                     <field name="type"/>
                     <field name="sign_date"/>
                     <field name="sent_date"/>

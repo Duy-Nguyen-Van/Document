@@ -7,14 +7,14 @@ class Document(models.Model):
      _description = 'Document'
      _inherit = ['mail.thread']
      name = fields.Char('Name',required=True)
-     # number = fields.Char('Number')
+     number = fields.Char('Number')
      sign_date = fields.Datetime('Sign Date')
      sent_date = fields.Datetime('Sent Date')
      arrived_date = fields.Datetime('Arrived Date',default=datetime.today())
      # composer_id = fields.Many2one('hr.employee' , 'Composer')
      # approver_id = fields.Many2one('hr.employee' , 'Approver')
      # sender_id = fields.Many2one('hr.employee' , 'Sender')
-     customer = fields.Many2one('res.partner','Customer',required=True)
+     organization = fields.Many2one('res.partner','Organization',required=True)
      department_id = fields.Many2one('hr.department' , 'Department')
      type = fields.Char('Type',required=True, default='Arrived', readonly=True)
      # notes = fields.Text('Note')
