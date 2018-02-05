@@ -42,7 +42,7 @@ class Document(models.Model):
      def action_cancel(self):
          for doc in self:
              doc.state = 'cancel'
-             
+
 # class Department(models.Model):
 #      _name = 'department.task'
 #      _description = 'Department'
@@ -65,10 +65,37 @@ class Document_Sent(models.Model):
      sender_id = fields.Many2one('hr.employee', 'Sender')
      state = fields.Selection([
           ('draft', 'Draft'),
+          ('email','Email Sent'),
           ('published', 'Published'),
           ('sent', 'Sent'),
           ('done', 'Done'),
+          ('cancel', 'Cancelled'),
      ], string='Document Status', readonly=True, copy=False, store=True, default='draft')
+
+     @api.multi
+     def action_resend(self):
+          for doc in self:
+               doc.state = 'email'
+
+     @api.multi
+     def action_document_send(self):
+          for doc in self:
+               doc.state = 'email'
+
+     @api.multi
+     def action_confirm(self):
+          for doc in self:
+              if doc.state == 'email':
+                   doc.state = 'published'
+              elif doc.state == 'published':
+                   doc.state = 'sent'
+              elif doc.state == 'sent':
+                   doc.state = 'done'
+
+     @api.multi
+     def action_cancel(self):
+          for doc in self:
+               doc.state = 'cancel'
 
 # class File(models.Model):
 #      _name='file.doc'
