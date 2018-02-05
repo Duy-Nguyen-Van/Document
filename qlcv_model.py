@@ -19,14 +19,30 @@ class Document(models.Model):
      type = fields.Char('Type',required=True, default='Arrived', readonly=True)
      # notes = fields.Text('Note')
      # type_id = fields.Many2one('doc.type','Type',required=True)
-     file = fields.Binary('File',required=True)
+     file_id = fields.Binary('File',required=True)
      state = fields.Selection([
           ('draft','Draft'),
           # ('published','Published'),
-          # ('sent','Sent'),
+          ('sent','Email Sent'),
           ('done','Done'),
+          ('cancel','Cancelled'),
      ],string='Document Status', readonly=True, copy=False, store=True, default='draft')
 
+     @api.multi
+     def action_convert(self):
+          for doc in self:
+               doc.state = 'done'
+
+     @api.multi
+     def action_document_send(self):
+         for doc in self:
+             doc.state = 'sent'
+
+     @api.multi
+     def action_cancel(self):
+         for doc in self:
+             doc.state = 'cancel'
+             
 # class Department(models.Model):
 #      _name = 'department.task'
 #      _description = 'Department'
@@ -54,22 +70,20 @@ class Document_Sent(models.Model):
           ('done', 'Done'),
      ], string='Document Status', readonly=True, copy=False, store=True, default='draft')
 
-@api.multi
-def import_file(self, cr, uid, ids, context=None):
-    fileobj = TemporaryFile('w+')
-    fileobj.write(base64.decodestring(data))
-    # your treatment
-    return True
+# class File(models.Model):
+#      _name='file.doc'
+#      _description = 'File'
+#      file = fields.Binary('File', required=True)
 
+     @api.multi
+     def import_file(self, cr, uid, ids, context=None):
+          fileobj = TemporaryFile('w+')
+          fileobj.write(base64.decodestring(data))
+          # your treatment
+          return True
 
-@api.multi
-def send_mail_template(self):
-     # Now let us find the e-mail template
-     template = self.env.ref('mail_template_demo.example_email_template')
-     self.env['mail.template'].browse(template.id).send_mail(self.id)
-
-
-
-
-
-
+# @api.multi
+# def send_mail_template(self):
+#      # Now let us find the e-mail template
+#      template = self.env.ref('mail_template_demo.example_email_template')
+#      self.env['mail.template'].browse(template.id).send_mail(self.id)

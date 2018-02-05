@@ -11,6 +11,8 @@
                 <button name="print_document" type="object"
                 string="Print" states="draft" class="btn-primary"/>
                 <field name="state" widget="statusbar" statusbar_visible="draft,published,sent,done"/>
+                <button name="action_convert" states="sent" type="object" string="Confirm Done" class="btn-primary"/>
+                <button name="action_cancel" states="draft,sent" type="object" string="Cancel"/>
             </header>
             <sheet>
                 <group name="group_top">
@@ -19,7 +21,7 @@
                         <field name="number"/>
                         <field name="organization"/>
                         <field name="type"/>
-                        <field name="file"/>
+                        <field name="file_id"/>
                     </group>
                     <group name="group_right">
                         <!--<field name="sign_date"/>-->
@@ -61,10 +63,11 @@
         <field name="model">doc.task</field>
         <field name="arch" type="xml">
                 <tree string="Document Arrived">
-                    <field name="name"/>
                     <field name="number"/>
+                    <field name="name"/>
                     <field name="organization"/>
                     <field name="type"/>
+                    <field name="department_id"/>
                     <!--<field name="sign_date"/>-->
                     <!--<field name="sent_date"/>-->
                     <field name="arrived_date"/>
@@ -91,7 +94,7 @@
                         <field name="number"/>
                         <field name="organization"/>
                         <field name="type"/>
-                        <field name="file"/>
+                        <field name="file_id"/>
                     </group>
                     <group name="group_right">
                         <field name="sign_date"/>
@@ -133,10 +136,11 @@
         <field name="model">doc.sent</field>
         <field name="arch" type="xml">
                 <tree string="Document Sent">
-                    <field name="name"/>
                     <field name="number"/>
+                    <field name="name"/>
                     <field name="organization"/>
                     <field name="type"/>
+                    <field name="department_id"/>
                     <field name="sign_date"/>
                     <field name="sent_date"/>
                     <!--<field name="arrived_date"/>-->

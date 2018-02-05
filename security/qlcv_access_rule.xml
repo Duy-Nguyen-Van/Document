@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<data noupdate="0">
-		<record id="doc_user_rule" model="ir.rule">
-			<field name="name">Doc only for owner</field>
+		<record id="doc_task_user_rule" model="ir.rule">
+			<field name="name">Doc Arrived only for owner</field>
 			<field name="model_id" ref="model_doc_task"/>
+			<field name="domain_force">
+				['|',('department_id','=',False),('department_id','=',user.employee_ids.department_id.id)]
+			</field>
+			<field name="group" eval="[(4,ref('base.group_user'))]"/>
+		</record>
+	</data>
+	<data noupdate="0">
+		<record id="doc_sent_user_rule" model="ir.rule">
+			<field name="name">Doc Sent only for owner</field>
+			<field name="model_id" ref="model_doc_sent"/>
 			<field name="domain_force">
 				['|',('department_id','=',False),('department_id','=',user.employee_ids.department_id.id)]
 			</field>
