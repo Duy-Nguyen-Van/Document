@@ -34,6 +34,9 @@
                         <!--<field name="file"/>-->
                     <!--</page>-->
                     <!--<field name="notes" placeholder="Write Note..." colspan="4"/>-->
+                    <page string="Content">
+                        <field name="otherinfor" placeholder="Other Information ..." colspan="4"/>
+                    </page>
                     <page string=" Other Information">
                         <group name="group_top">
                             <!--<group string="Solution" name="group_right">-->
@@ -110,6 +113,9 @@
                         <!--<field name="file"/>-->
                     <!--</page>-->
                     <!--<field name="notes" placeholder="Write Note..." colspan="4"/>-->
+                    <page string="Content">
+                        <field name="otherinfor" placeholder="Other Information ..." colspan="4"/>
+                    </page>
                     <page string=" Other Information">
                         <group name="group_top">
                             <group string="Department" name="group_left">

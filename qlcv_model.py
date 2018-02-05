@@ -17,7 +17,7 @@ class Document(models.Model):
      organization = fields.Many2one('res.partner','Organization',required=True)
      department_id = fields.Many2one('hr.department' , 'Department')
      type = fields.Char('Type',required=True, default='Arrived', readonly=True)
-     # notes = fields.Text('Note')
+     otherinfor = fields.Text('Notes')
      # type_id = fields.Many2one('doc.type','Type',required=True)
      file_id = fields.Binary('File',required=True)
      state = fields.Selection([
