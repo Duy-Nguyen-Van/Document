@@ -243,23 +243,59 @@
         <!--</field>-->
     <!--</record>-->
 
-    <!--<record id="view_filter_doc_task" model="ir.ui.view">-->
-        <!--<field name="name">Documment Filter</field>-->
-        <!--<field name="model">doc.task</field>-->
-        <!--<field name="arch" type="xml">-->
-            <!--<search>-->
-                <!--<field name="name"/>-->
-                <!--<filter string="Arrived" name="arrived_filter"-->
-                        <!--domain="[('type','=','Arrived')]"/>-->
-                <!--<filter string="Sent" name="sent_filter"-->
-                        <!--domain="[('type','=','Sent')]"/>-->
-            <!--</search>-->
-        <!--</field>-->
-    <!--</record>-->
+    <record id="view_search_doc_task" model="ir.ui.view">
+        <field name="name">Documment Arrived Search</field>
+        <field name="model">doc.task</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="number"/>
+                <field name="otherinfor"/>
+            </search>
+        </field>
+    </record>
 
-    <!--<record model="ir.actions.act_window" id="action_doc_task">-->
-        <!--<field name="context">-->
-            <!--{'search_default_arrived_filter':True}-->
-        <!--</field>-->
-    <!--</record>-->
+    <record id="view_search_doc_sent" model="ir.ui.view">
+        <field name="name">Documment Sent Search</field>
+        <field name="model">doc.sent</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="number"/>
+                <field name="otherinfor"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_doc_task">
+        <field name="context">
+            {'search_default_arrived_filter':True}
+        </field>
+    </record>
+
+    <record id="view_tag_form" model="ir.ui.view">
+        <field name="name">Tag Form</field>
+        <field name="model">tag.doc</field>
+        <field name="arch" type="xml">
+            <form string="Tag">
+                <sheet>
+                    <group  name="group-top">
+                        <group name="group-left">
+                            <field name="tag_name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tag_tree" model="ir.ui.view">
+        <field name="name">Tag Tree</field>
+        <field name="model">tag.doc</field>
+        <field name="arch" type="xml">
+            <tree string="Tag">
+                <field name="tag_name"/>
+            </tree>
+        </field>
+    </record>
 </odoo>

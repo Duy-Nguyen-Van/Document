@@ -109,6 +109,10 @@ class Document_Sent(models.Model):
           # your treatment
           return True
 
+class Tag(models.Model):
+     _name = 'tag.doc'
+     _description = 'Document Tag'
+     tag_name = fields.Char('Tag Name')
 # @api.multi
 # def send_mail_template(self):
 #      # Now let us find the e-mail template
