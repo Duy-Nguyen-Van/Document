@@ -5,7 +5,7 @@
 			<field name="name">Doc Arrived only for owner</field>
 			<field name="model_id" ref="model_doc_task"/>
 			<field name="domain_force">
-				['|',('department_id.name','!=','CV'),'|',('department_id','=',False),('department_id','=',user.employee_ids.department_id.id)]
+				['|',('department_id.name','!=','Management'),'|',('department_id','=',False),('department_id','=',user.employee_ids.department_id.id)]
 			</field>
 			<field name="group" eval="[(4,ref('base.group_user'))]"/>
 		</record>
@@ -15,9 +15,31 @@
 			<field name="name">Doc Sent only for owner</field>
 			<field name="model_id" ref="model_doc_sent"/>
 			<field name="domain_force">
-				['|',('department_id.name','!=','CV'),'|',('department_id','=',False),('department_id','=',user.employee_ids.department_id.id)]
+				['|',('department_id.name','!=','Management'),'|',('department_id','=',False),('department_id','=',user.employee_ids.department_id.id)]
 			</field>
 			<field name="group" eval="[(4,ref('base.group_user'))]"/>
 		</record>
+	</data>
+	<data>
+		<record model="ir.model.access" id="demo_user">
+			<field name="name"> Model user access</field>
+			<field name="model_id" ref="model_doc_task"></field>
+			<field name="group" eval="[(4,ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+			<field name="perm_write" eval="True"/>
+        	<field name="perm_unlink" eval="True"/>
+        	<field name="perm_create" eval="True"/>
+     </record>
+	</data>
+	<data>
+     <record model="ir.model.access" id="demo_admin">
+             <field name="name"> Model admin access</field>
+             <field name="model_id" ref="model_doc_task"></field>
+             <field name="group" eval="[(4,ref('base.group_manager'))]"/>
+             <field eval="1" name="perm_write"></field>
+             <field eval="1" name="perm_read"></field>
+             <field eval="1" name="perm_unlink"></field>
+             <field eval="1" name="perm_create"></field>
+     </record>
 	</data>
 </odoo>

@@ -8,10 +8,12 @@
 	'data': [
 		'views/qlcv_menu.xml',
         'views/qlcv_view.xml',
-		'security/qlcv_access_rule.xml'
+		'security/qlcv_access_rule.xml',
+		#'security/ir.model.access.csv',
+		'security/user_groups.xml'
 	],
-	# 'demo' : [
-	# 	'data/doc_task.csv'
-	# 	# 'data/doc_data.xml'
-	# ],
+	'demo' : [
+		# 'data/doc_task.csv'
+		'data/doc_data.xml'
+	],
 }

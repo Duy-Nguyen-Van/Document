@@ -19,7 +19,7 @@ class Document(models.Model):
      type = fields.Char('Type',required=True, default='Arrived', readonly=True)
      otherinfor = fields.Text('Notes')
      # type_id = fields.Many2one('doc.type','Type',required=True)
-     file_id = fields.Binary('File',required=True)
+     file_id = fields.Binary('File')
      state = fields.Selection([
           ('draft','Draft'),
           # ('published','Published'),
