@@ -7,7 +7,7 @@ class Document(models.Model):
      _description = 'Document'
      _inherit = ['mail.thread']
      name = fields.Char('Name',required=True)
-     number = fields.Char('Number')
+     number = fields.Char('Number',required=True)
      sign_date = fields.Datetime('Sign Date')
      sent_date = fields.Datetime('Sent Date')
      arrived_date = fields.Datetime('Arrived Date',default=datetime.today())
