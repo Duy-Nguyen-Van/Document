@@ -273,29 +273,29 @@
         </field>
     </record>
 
-    <record id="view_tag_form" model="ir.ui.view">
-        <field name="name">Tag Form</field>
-        <field name="model">tag.doc</field>
-        <field name="arch" type="xml">
-            <form string="Tag">
-                <sheet>
-                    <group  name="group-top">
-                        <group name="group-left">
-                            <field name="tag_name"/>
-                        </group>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
+    <!--<record id="view_tag_form" model="ir.ui.view">-->
+        <!--<field name="name">Tag Form</field>-->
+        <!--<field name="model">tag.doc</field>-->
+        <!--<field name="arch" type="xml">-->
+            <!--<form string="Tag">-->
+                <!--<sheet>-->
+                    <!--<group  name="group-top">-->
+                        <!--<group name="group-left">-->
+                            <!--<field name="tag_name"/>-->
+                        <!--</group>-->
+                    <!--</group>-->
+                <!--</sheet>-->
+            <!--</form>-->
+        <!--</field>-->
+    <!--</record>-->
 
-    <record id="view_tag_tree" model="ir.ui.view">
-        <field name="name">Tag Tree</field>
-        <field name="model">tag.doc</field>
-        <field name="arch" type="xml">
-            <tree string="Tag">
-                <field name="tag_name"/>
-            </tree>
-        </field>
-    </record>
+    <!--<record id="view_tag_tree" model="ir.ui.view">-->
+        <!--<field name="name">Tag Tree</field>-->
+        <!--<field name="model">tag.doc</field>-->
+        <!--<field name="arch" type="xml">-->
+            <!--<tree string="Tag">-->
+                <!--<field name="tag_name"/>-->
+            <!--</tree>-->
+        <!--</field>-->
+    <!--</record>-->
 </odoo>

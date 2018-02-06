@@ -10,4 +10,8 @@
         'views/qlcv_view.xml',
 		'security/qlcv_access_rule.xml'
 	],
+	'demo' : [
+		'data/doc_task.csv'
+		# 'data/doc_data.xml'
+	],
 }

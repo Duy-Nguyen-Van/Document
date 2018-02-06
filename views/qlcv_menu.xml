@@ -16,10 +16,10 @@
                 res_model="doc.task"
                 view_mode="tree,form"/>
 
-    <act_window id="action_tag"
-                name="Tag"
-                res_model="tag.doc"
-                view_mode="tree,form"/>
+    <!--<act_window id="action_tag"-->
+                <!--name="Tag"-->
+                <!--res_model="tag.doc"-->
+                <!--view_mode="tree,form"/>-->
 
     <!--<act_window id="action_doc_type_view"-->
                 <!--name="Document Type"-->
@@ -66,11 +66,11 @@
               action="action_report_task"
               parent="menu_doc_task"/>
 
-    <menuitem id="menu_tag_view"
-              name="Tag"
-              sequence="7"
-              action="action_tag"
-              parent="menu_doc_task"/>
+    <!--<menuitem id="menu_tag_view"-->
+              <!--name="Tag"-->
+              <!--sequence="7"-->
+              <!--action="action_tag"-->
+              <!--parent="menu_doc_task"/>-->
 
     <!--<menuitem id="menu_config_task_view"-->
               <!--name="Configuration"-->
