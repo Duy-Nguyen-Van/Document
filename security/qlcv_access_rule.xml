@@ -24,7 +24,7 @@
 		<record model="ir.model.access" id="demo_user">
 			<field name="name"> Model user access</field>
 			<field name="model_id" ref="model_doc_task"></field>
-			<field name="group" eval="[(4,ref('base.group_user'))]"/>
+			<field name="group_id">4</field>
             <field name="perm_read" eval="True"/>
 			<field name="perm_write" eval="True"/>
         	<field name="perm_unlink" eval="True"/>
@@ -35,7 +35,7 @@
      <record model="ir.model.access" id="demo_admin">
              <field name="name"> Model admin access</field>
              <field name="model_id" ref="model_doc_task"></field>
-             <field name="group" eval="[(4,ref('base.group_manager'))]"/>
+             <field name="group_id">4</field>
              <field eval="1" name="perm_write"></field>
              <field eval="1" name="perm_read"></field>
              <field eval="1" name="perm_unlink"></field>
