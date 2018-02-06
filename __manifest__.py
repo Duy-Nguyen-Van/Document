@@ -2,7 +2,7 @@
 	'name': 'Document PTN',
 	'description': '[test]Manage your personal Document tasks.',
 	'author': 'Duy Nguyen',
-	'depends': ['base','mail','hr','mail_template_demo'],
+	'depends': ['base','mail','hr'],
 	'application': True,
 	# 'images':['images/icon.png'],
 	'data': [
