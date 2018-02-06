@@ -5,7 +5,7 @@
 			<field name="name">Doc Arrived only for owner</field>
 			<field name="model_id" ref="model_doc_task"/>
 			<field name="domain_force">
-				['|',('department_id','=',False),('department_id','=',user.employee_ids.department_id.id)]
+				['|',('department_id.name','!=','CV'),'|',('department_id','=',False),('department_id','=',user.employee_ids.department_id.id)]
 			</field>
 			<field name="group" eval="[(4,ref('base.group_user'))]"/>
 		</record>
@@ -15,7 +15,7 @@
 			<field name="name">Doc Sent only for owner</field>
 			<field name="model_id" ref="model_doc_sent"/>
 			<field name="domain_force">
-				['|',('department_id','=',False),('department_id','=',user.employee_ids.department_id.id)]
+				['|',('department_id.name','!=','CV'),'|',('department_id','=',False),('department_id','=',user.employee_ids.department_id.id)]
 			</field>
 			<field name="group" eval="[(4,ref('base.group_user'))]"/>
 		</record>
