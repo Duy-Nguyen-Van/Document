@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
         <form string="Document Arrived">
             <header>
-                <button name ="action_document_send" type="object"
+                <button name ="action_document_send12" type="object"
                 string="Send by Email" states="draft" class="btn-primary"/>
                 <button name="print_document" type="object"
                 string="Print" states="draft" class="btn-primary"/>
@@ -21,7 +21,8 @@
                         <field name="number"/>
                         <field name="organization"/>
                         <field name="type"/>
-                        <field name="file_id"/>
+                        <field name="data"/>
+                        <!--and <button name="import_test" string="Import" type="object"  class="oe_highlight"/>-->
                     </group>
                     <group name="group_right">
                         <!--<field name="sign_date"/>-->
@@ -100,7 +101,7 @@
                         <field name="number"/>
                         <field name="organization"/>
                         <field name="type"/>
-                        <field name="file_id"/>
+                        <field name="data"/>
                     </group>
                     <group name="group_right">
                         <field name="sign_date"/>

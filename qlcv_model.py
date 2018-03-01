@@ -19,7 +19,7 @@ class Document(models.Model):
      type = fields.Char('Type',required=True, default='Arrived', readonly=True)
      otherinfor = fields.Text('Notes')
      # type_id = fields.Many2one('doc.type','Type',required=True)
-     file_id = fields.Binary('File')
+     data = fields.Binary('File')
      state = fields.Selection([
           ('draft','Draft'),
           # ('published','Published'),
@@ -27,6 +27,52 @@ class Document(models.Model):
           ('done','Done'),
           ('cancel','Cancelled'),
      ],string='Document Status', readonly=True, copy=False, store=True, default='draft')
+
+     @api.multi
+     def action_document_send12(self):
+         '''
+         This function opens a window to compose an email, with the edi sale template message loaded by default
+         '''
+         self.ensure_one()
+         ir_model_data = self.env['ir.model.data']
+         try:
+             template_id = ir_model_data.get_object_reference('Document', 'email_template_doc')[1]
+         except ValueError:
+             template_id = False
+         try:
+             compose_form_id = ir_model_data.get_object_reference('mail', 'email_compose_message_wizard_form')[1]
+         except ValueError:
+             compose_form_id = False
+         ctx = dict()
+         ctx.update({
+             'default_model': 'doc.task',
+             'default_res_id': self.ids[0],
+             'default_use_template': bool(template_id),
+             'default_template_id': template_id,
+             'default_composition_mode': 'comment',
+             'mark_so_as_sent': True,
+             'custom_layout': "sale.mail_template_data_notification_email_sale_order"
+         })
+         return {
+             'type': 'ir.actions.act_window',
+             'view_type': 'form',
+             'view_mode': 'form',
+             'res_model': 'mail.compose.message',
+             'views': [(compose_form_id, 'form')],
+             'view_id': compose_form_id,
+             'target': 'new',
+             'context': ctx,
+         }
+
+     @api.multi
+     def force_quotation_send(self):
+         for order in self:
+             email_act = order.action_quotation_send12()
+             if email_act and email_act.get('context'):
+                 email_ctx = email_act['context']
+                 email_ctx.update(default_email_from=order.company_id.email)
+                 order.with_context(email_ctx).message_post_with_template(email_ctx.get('default_template_id'))
+         return True
 
      @api.multi
      def action_convert(self):
@@ -45,6 +91,13 @@ class Document(models.Model):
          for doc in self:
              doc.state = 'cancel'
 
+     # @api.multi
+     # class import_test:
+     #      def import_file(self, cr, uid, ids, context=None):
+     #           fileobj = TemporaryFile('w+')
+     #           fileobj.write(base64.decodestring(data))
+     #           # your treatment
+     #           return True
 # class Department(models.Model):
 #      _name = 'department.task'
 #      _description = 'Department'
@@ -111,6 +164,7 @@ class Document_Sent(models.Model):
           # your treatment
           return True
 
+
 # class Tag(models.Model):
 #      _name = 'tag.doc'
 #      _description = 'Document Tag'
@@ -120,3 +174,4 @@ class Document_Sent(models.Model):
 #      # Now let us find the e-mail template
 #      template = self.env.ref('mail_template_demo.example_email_template')
 #      self.env['mail.template'].browse(template.id).send_mail(self.id)
+
