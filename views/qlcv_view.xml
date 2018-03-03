@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
         <form string="Document Arrived">
             <header>
-                <button name ="action_document_send12" type="object"
+                <button name ="action_document_send" type="object"
                 string="Send by Email" states="draft" class="btn-primary"/>
                 <button name="print_document" type="object"
                 string="Print" states="draft" class="btn-primary"/>
@@ -17,6 +17,7 @@
             <sheet>
                 <group name="group_top">
                     <group name="group_left">
+                        <field name="tag" widget="many2many_tags"/>
                         <field name="name"/>
                         <field name="number"/>
                         <field name="organization"/>
@@ -90,7 +91,7 @@
                 <button name="print_document" type="object"
                 string="Print" states="draft" class="btn-primary"/>
                 <field name="state" widget="statusbar" statusbar_visible="draft,email,published,sent,done"/>
-                <button name="action_resend" type="object" string="Re-Send" states="email" class="btn-primary"/>
+                <button name="action_document_send" type="object" string="Re-Send" states="email" class="btn-primary"/>
                 <button name="action_confirm" type="object" string="Confirm" states="email,published,sent" class="btn-primary"/>
                 <button name="action_cancel" states="draft,sent,email,published" type="object" string="Cancel"/>
             </header>

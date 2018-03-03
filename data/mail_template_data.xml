@@ -2,9 +2,9 @@
 <odoo>
     <data noupdate="1">
 
-        <!--Email template -->
+        <!--Email template arrived -->
         <record id="email_template_doc" model="mail.template">
-            <field name="name">Sales Order - Send by Email</field>
+            <field name="name">Document Arrived - Send by Email</field>
             <field name="email_from">abc</field>
             <!--<field name="subject">${object.company_id.name} ${object.state in ('draft', 'sent') and 'Quotation' or 'Order'} (Ref ${object.name or 'n/a' })</field>-->
             <field name="subject">Công văn cho: ${object.department_id.name} </field>
@@ -14,94 +14,32 @@
             <!--<field name="report_template" ref="report_sale_order"/>-->
             <!--<field name="report_name">${(object.name or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}</field>-->
             <field name="lang">en-US</field>
-            <field name="attachment_ids">${object.data}</field>
+            <field name="attachment_ids"></field>
+            <!--<field name="report_name">${(object.data or '').replace('/','_')}</field>-->
             <field name="body_html"><![CDATA[
-            <p>Chào ${object.department_id.manager_id.name},</p>
-            <p>Đây là công văn từ ${object.organization.name}</p>
-
+<p>Chào ${object.department_id.manager_id.name},</p>
+<p>Đây là công văn từ ${object.organization.name}</p>
 ]]></field>
         </record>
 
-        <!--Default Notification Email template for invoices-->
-        <!--<record id="sale.mail_template_data_notification_email_sale_order" model="mail.template">-->
-            <!--<field name="name">Sale Order Notification Email</field>-->
-            <!--<field name="subject">${object.subject}</field>-->
-            <!--<field name="model_id" ref="mail.model_mail_message"/>-->
-            <!--<field name="auto_delete" eval="True"/>-->
-            <!--<field name="body_html"><![CDATA[<html>-->
-                <!--<head></head>-->
-                <!--% set record = ctx.get('record')-->
-                <!--% set company = record and record.company_id or user.company_id-->
-                <!--<body style="margin: 0; padding: 0;">-->
-                <!--<table border="0" width="100%" cellpadding="0" bgcolor="#ededed" style="padding: 20px; background-color: #ededed; border-collapse:separate;" summary="o_mail_notification">-->
-                    <!--<tbody>-->
-
-                      <!--&lt;!&ndash; HEADER &ndash;&gt;-->
-                      <!--<tr>-->
-                        <!--<td align="center" style="min-width: 590px;">-->
-                          <!--<table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;">-->
-                            <!--<tr>-->
-                              <!--<td valign="middle">-->
-                                  <!--<span style="font-size:20px; color:white; font-weight: bold;">-->
-                                      <!--${object.record_name}-->
-                                  <!--</span>-->
-                              <!--</td>-->
-                              <!--<td valign="middle" align="right">-->
-                                  <!--<img src="/logo.png?company=${company.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${company.name}">-->
-                              <!--</td>-->
-                            <!--</tr>-->
-                          <!--</table>-->
-                        <!--</td>-->
-                      <!--</tr>-->
-
-                      <!--&lt;!&ndash; CONTENT &ndash;&gt;-->
-                      <!--<tr>-->
-                        <!--<td align="center" style="min-width: 590px;">-->
-                          <!--<table width="590" border="0" cellpadding="0" bgcolor="#ffffff" style="min-width: 590px; background-color: rgb(255, 255, 255); padding: 20px; border-collapse:separate;">-->
-                            <!--<tbody>-->
-                              <!--<td valign="top" style="font-family:Arial,Helvetica,sans-serif; color: #555; font-size: 14px;">-->
-                                <!--${object.body | safe}-->
-                              <!--</td>-->
-                            <!--</tbody>-->
-                          <!--</table>-->
-                        <!--</td>-->
-                      <!--</tr>-->
-
-                      <!--&lt;!&ndash; FOOTER &ndash;&gt;-->
-                      <!--<tr>-->
-                        <!--<td align="center" style="min-width: 590px;">-->
-                          <!--<table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;">-->
-                            <!--<tr>-->
-                              <!--<td valign="middle" align="left" style="color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">-->
-                                <!--${company.name}<br/>-->
-                                <!--${company.phone or ''}-->
-                              <!--</td>-->
-                              <!--<td valign="middle" align="right" style="color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">-->
-                                <!--% if company.email:-->
-                                <!--<a href="mailto:${company.email}" style="text-decoration:none; color: white;">${company.email}</a><br/>-->
-                                <!--% endif-->
-                                <!--% if company.website:-->
-                                    <!--<a href="${company.website}" style="text-decoration:none; color: white;">-->
-                                        <!--${company.website}-->
-                                    <!--</a>-->
-                                <!--% endif-->
-                              <!--</td>-->
-                            <!--</tr>-->
-                          <!--</table>-->
-                        <!--</td>-->
-                      <!--</tr>-->
-                      <!--<tr>-->
-                        <!--<td align="center">-->
-                            <!--Powered by <a href="https://www.odoo.com">Odoo</a>.-->
-                        <!--</td>-->
-                      <!--</tr>-->
-                    <!--</tbody>-->
-                <!--</table>-->
-                <!--</body>-->
-                <!--</html>-->
-            <!--]]></field>-->
-        <!--</record>-->
-
-
+        <!--Email template sent-->
+        <record id="email_template_sent" model="mail.template">
+            <field name="name">Document Sent - Send by Email</field>
+            <field name="email_from">${object.department_id.manager_id.work_email}</field>
+            <!--<field name="subject">${object.company_id.name} ${object.state in ('draft', 'sent') and 'Quotation' or 'Order'} (Ref ${object.name or 'n/a' })</field>-->
+            <field name="subject">Công văn đi từ: ${object.department_id.name} </field>
+            <field name="email_to">${object.department_id.parent_id.manager_id.work_email}</field>
+            <field name="model_id" ref="Document.model_doc_task"/>
+            <field name="auto_delete" eval="True"/>
+            <!--<field name="report_template" ref="report_sale_order"/>-->
+            <!--<field name="report_name">${(object.name or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}</field>-->
+            <field name="lang">en-US</field>
+            <field name="attachment_ids"></field>
+            <!--<field name="report_name">${(object.data or '').replace('/','_')}</field>-->
+            <field name="body_html"><![CDATA[
+<p>Chào ${object.department_id.parent_id.manager_id.name},</p>
+<p>Đây là công văn chờ duyệt</p>
+]]></field>
+        </record>
     </data>
 </odoo>
