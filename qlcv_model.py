@@ -43,12 +43,12 @@ class Document(models.Model):
              'type': 'binary'
          }
          id = self.env['ir.attachment'].create(attachment)
-         email_template = self.env.ref('Document.email_template_doc')
+         email_template = self.env.ref('islabdocument.email_template_doc')
          email_template.attachment_ids = False
          email_template.attachment_ids = [(4,id.id)]
          ir_model_data = self.env['ir.model.data']
          try:
-             template_id = ir_model_data.get_object_reference('Document', 'email_template_doc')[1]
+             template_id = ir_model_data.get_object_reference('islabdocument', 'email_template_doc')[1]
          except ValueError:
              template_id = False
          try:
@@ -119,12 +119,12 @@ class Document_Sent(models.Model):
              'type': 'binary'
          }
          id = self.env['ir.attachment'].create(attachment)
-         email_template = self.env.ref('Document.email_template_sent')
+         email_template = self.env.ref('islabdocument.email_template_sent')
          email_template.attachment_ids = False
          email_template.attachment_ids = [(4, id.id)]
          ir_model_data = self.env['ir.model.data']
          try:
-             template_id = ir_model_data.get_object_reference('Document', 'email_template_sent')[1]
+             template_id = ir_model_data.get_object_reference('islabdocument', 'email_template_sent')[1]
          except ValueError:
              template_id = False
          try:

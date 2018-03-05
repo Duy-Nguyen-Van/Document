@@ -9,7 +9,7 @@
             <!--<field name="subject">${object.company_id.name} ${object.state in ('draft', 'sent') and 'Quotation' or 'Order'} (Ref ${object.name or 'n/a' })</field>-->
             <field name="subject">Công văn cho: ${object.department_id.name} </field>
             <field name="email_to">${object.department_id.manager_id.work_email}</field>
-            <field name="model_id" ref="Document.model_doc_task"/>
+            <field name="model_id" ref="islabdocument.model_doc_task"/>
             <field name="auto_delete" eval="True"/>
             <!--<field name="report_template" ref="report_sale_order"/>-->
             <!--<field name="report_name">${(object.name or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}</field>-->
@@ -29,7 +29,7 @@
             <!--<field name="subject">${object.company_id.name} ${object.state in ('draft', 'sent') and 'Quotation' or 'Order'} (Ref ${object.name or 'n/a' })</field>-->
             <field name="subject">Công văn đi từ: ${object.department_id.name} </field>
             <field name="email_to">${object.department_id.parent_id.manager_id.work_email}</field>
-            <field name="model_id" ref="Document.model_doc_task"/>
+            <field name="model_id" ref="islabdocument.model_doc_task"/>
             <field name="auto_delete" eval="True"/>
             <!--<field name="report_template" ref="report_sale_order"/>-->
             <!--<field name="report_name">${(object.name or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}</field>-->
