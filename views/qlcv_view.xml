@@ -17,9 +17,9 @@
             <sheet>
                 <group name="group_top">
                     <group name="group_left">
-                        <field name="tag" widget="many2many_tags"/>
                         <field name="name"/>
                         <field name="number"/>
+                        <field name="tag" widget="many2many_tags"/>
                         <field name="organization"/>
                         <field name="type"/>
                         <field name="data"/>
@@ -100,6 +100,7 @@
                     <group name="group_left">
                         <field name="name"/>
                         <field name="number"/>
+                        <field name="tag" widget="many2many_tags"/>
                         <field name="organization"/>
                         <field name="type"/>
                         <field name="data"/>
@@ -252,6 +253,7 @@
             <search>
                 <field name="name"/>
                 <field name="number"/>
+                <field name="tag"/>
                 <field name="otherinfor"/>
             </search>
         </field>
@@ -264,6 +266,7 @@
             <search>
                 <field name="name"/>
                 <field name="number"/>
+                <field name="tag"/>
                 <field name="otherinfor"/>
             </search>
         </field>
