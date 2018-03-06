@@ -66,6 +66,39 @@
               action="action_report_task"
               parent="menu_doc_task"/>
 
+    <menuitem id="menu_doc_manage_task_view"
+              name="Document Management"
+              sequence="5"
+              action="action_doc_task"
+              parent="menu_doc_task"/>
+
+    <record id="action_doc_file" model="ir.actions.act_window">
+	    <field name="name">Document Files</field>
+	    <field name="res_model">muk_dms.file</field>
+	    <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem id="menu_doc_file" name="Files"
+	    parent="menu_doc_manage_task_view" action="action_doc_file" sequence="10"/>
+
+    <record id="action_doc_directory" model="ir.actions.act_window">
+	    <field name="name">Document Directories</field>
+	    <field name="res_model">muk_dms.directory</field>
+	    <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem id="menu_doc_directory" name="Directories"
+	    parent="menu_doc_manage_task_view" action="action_doc_directory" sequence="9"/>
+
+    <record id="action_doc_documents" model="ir.actions.client">
+	    <field name="name">DocumentTreeView</field>
+	    <field name="tag">muk_dms_views.documents</field>
+    </record>
+
+    <menuitem id="menu_doc_tree_view" name="Documents"
+	    parent="menu_doc_manage_task_view" action="action_doc_documents" sequence="8"/>
+
+
     <!--<menuitem id="menu_tag_view"-->
               <!--name="Tag"-->
               <!--sequence="7"-->
@@ -82,5 +115,4 @@
               <!--sequence="10"-->
               <!--action="action_doc_type_view"-->
               <!--parent="menu_config_task_view"/>-->
-
 </data>

@@ -19,10 +19,12 @@ class Document(models.Model):
      type = fields.Char('Type',required=True, default='Arrived', readonly=True)
      otherinfor = fields.Text('Notes')
      # type_id = fields.Many2one('doc.type','Type',required=True)
-     data = fields.Binary('File')
+     # data = fields.Binary(
+     #     string='File',
+     #     )
+     data = fields.Many2one('muk_dms.file','File')
      state = fields.Selection([
           ('draft','Draft'),
-          # ('published','Published'),
           ('sent','Email Sent'),
           ('done','Done'),
           ('cancel','Cancelled'),
@@ -37,7 +39,7 @@ class Document(models.Model):
          self.ensure_one()
          attachment = {
              'name': ("%s" % self.name),
-             'datas': self.data,
+             'datas': self.data.content,
              'datas_fname': self.name,
              'res_model': 'doc.task',
              'type': 'binary'
@@ -87,7 +89,54 @@ class Document(models.Model):
 
      @api.multi
      def print_document(self):
-        self.result = self.pool.get('data').get_pdf(cr, uid, [0], data.name, context=ctx)
+        result = self.pool.get('data').get_pdf(cr, uid, [0], data, context=ctx)
+
+     def _compute_content(self):
+         for record in self:
+             record.data = record._get_content()
+
+     def _get_content(self):
+         self.ensure_one()
+         # self.check_access('read', raise_exception=True)
+         # return self.reference.sudo().content() if self.reference else None
+
+     def _inverse_content(self):
+         for record in self:
+             if record.data:
+                 data = record.data
+                 directory = record.directory
+                 settings = record.settings if record.settings else directory.settings
+             #     reference = record.reference
+             #     if reference:
+             #         record._update_reference_content(content)
+             #     else:
+             #         reference = record._create_reference(
+             #             settings, directory.path, record.name, content)
+             #     record.reference = "%s,%s" % (reference._name, reference.id)
+             #     record.size = len(base64.b64decode(content))
+             # else:
+             #     record._unlink_reference()
+             #     record.reference = None
+
+     def _update_reference_content(self, data):
+         self.ensure_one()
+         # self.check_access('write', raise_exception=True)
+         self.reference.sudo().update({'data': data})
+
+     def _unlink_reference(self):
+         self.ensure_one()
+         # self.check_access('unlink', raise_exception=True)
+         # if self.reference:
+         #     self.reference.sudo().delete()
+         #     self.reference.sudo().unlink()
+
+     def _create_reference(self, settings, path, filename, data):
+         self.ensure_one()
+         # self.check_access('create', raise_exception=True)
+         if settings.save_type == 'database':
+             return self.env['muk_dms.data_database'].sudo().create({'data': data})
+         return None
+
 
 class Document_Sent(models.Model):
      _inherit = 'doc.task'
@@ -113,7 +162,7 @@ class Document_Sent(models.Model):
          self.ensure_one()
          attachment = {
              'name': ("%s" % self.name),
-             'datas': self.data,
+             'datas': self.data.content,
              'datas_fname': self.name,
              'res_model': 'doc.sent',
              'type': 'binary'
