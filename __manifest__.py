@@ -1,10 +1,10 @@
 {
 	'name': 'Document PTN',
 	'description': '[test]Manage your personal Document tasks.',
-	'author': 'Duy Nguyen',
+	'author': 'ISLab Team',
 	'depends': ['base','mail','hr','muk_dms'],
 	'application': True,
-	# 'images':['images/icon.png'],
+	'images':['images/icon.png'],
 	'data': [
 		'views/qlcv_menu.xml',
         'views/qlcv_view.xml',
@@ -13,8 +13,8 @@
 		'security/qlcv_access_rule.xml',
 		'data/mail_template_data.xml',
 	],
-	'demo' : [
-		# 'data/doc_task.csv'
-		'data/doc_data.xml'
-	],
+	# 'demo' : [
+	# 	# 'data/doc_task.csv'
+	# 	'data/doc_data.xml'
+	# ],
 }
