@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <odoo>
     <record model="doc.task" id="todo_task_a">
-      <field name="name">A</field>
+      <field name="filename">A</field>
       <field name="number">1</field>
       <field name="type">Arrived</field>
       <field name="organization">8</field>
@@ -9,7 +9,7 @@
     </record>
 
     <record model="doc.task" id="todo_task_b">
-      <field name="name">B</field>
+      <field name="filename">B</field>
       <field name="number">2</field>
       <field name="type">Arrived</field>
       <field name="organization">4</field>
@@ -17,7 +17,7 @@
     </record>
 
     <record model="doc.task" id="todo_task_c">
-      <field name="name">C</field>
+      <field name="filename">C</field>
       <field name="number">3</field>
       <field name="type">Arrived</field>
       <field name="organization">5</field>
@@ -25,7 +25,7 @@
     </record>
 
     <record model="doc.task" id="todo_task_d">
-      <field name="name">D</field>
+      <field name="filename">D</field>
       <field name="number">4</field>
       <field name="type">Arrived</field>
       <field name="organization">6</field>
@@ -33,15 +33,15 @@
     </record>
 
     <record model="doc.task" id="todo_task_e">
-      <field name="name">E</field>
+      <field name="filename">E</field>
       <field name="number">5</field>
       <field name="type">Arrived</field>
       <field name="organization">7</field>
-      <field name="department_id"></field>
+      <field name="department_id">5</field>
     </record>
 
     <record model="doc.sent" id="doc_sent_a">
-      <field name="name">A</field>
+      <field name="filename">A</field>
       <field name="number">1</field>
       <field name="type">Sent</field>
       <field name="organization">3</field>
@@ -49,7 +49,7 @@
     </record>
 
     <record model="doc.sent" id="doc_sent_b">
-      <field name="name">B</field>
+      <field name="filename">B</field>
       <field name="number">2</field>
       <field name="type">Sent</field>
       <field name="organization">4</field>
@@ -57,7 +57,7 @@
     </record>
 
     <record model="doc.sent" id="doc_sent_c">
-      <field name="name">C</field>
+      <field name="filename">C</field>
       <field name="number">3</field>
       <field name="type">Sent</field>
       <field name="organization">5</field>
@@ -65,10 +65,10 @@
     </record>
 
     <record model="doc.sent" id="doc_sent_d">
-      <field name="name">D</field>
+      <field name="filename">D</field>
       <field name="number">4</field>
       <field name="type">Sent</field>
       <field name="organization">6</field>
-      <field name="department_id"></field>
+      <field name="department_id">4</field>
     </record>
 </odoo>

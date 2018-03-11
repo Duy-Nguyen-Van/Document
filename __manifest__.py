@@ -13,8 +13,8 @@
 		'security/qlcv_access_rule.xml',
 		'data/mail_template_data.xml',
 	],
-	# 'demo' : [
-	# 	# 'data/doc_task.csv'
-	# 	'data/doc_data.xml'
-	# ],
+	'demo' : [
+		# 'data/doc_task.csv'
+		'data/doc_data.xml'
+	],
 }
