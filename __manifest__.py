@@ -12,6 +12,8 @@
 		'security/ir.model.access.csv',
 		'security/qlcv_access_rule.xml',
 		'data/mail_template_data.xml',
+		'views/qlcv_directory.xml',
+		# "template/assets.xml",
 	],
 	'demo' : [
 		# 'data/doc_task.csv'

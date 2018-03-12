@@ -33,13 +33,10 @@
                     <group name="group_right">
                         <field name="arrived_date"/>
                         <field name="directory"/>
+                        <!--<field name="relational_path" widget="dms_relpath"/>-->
                     </group>
                 </group>
                 <notebook>
-                    <!--<page string="File">-->
-                        <!--<field name="file"/>-->
-                    <!--</page>-->
-                    <!--<field name="notes" placeholder="Write Note..." colspan="4"/>-->
                     <page string="Content">
                         <field name="otherinfor" placeholder="Other Information ..." colspan="4"/>
                     </page>
@@ -106,11 +103,12 @@
                         <field name="tag" widget="many2many_tags"/>
                         <field name="organization"/>
                         <field name="type"/>
-                        <field name="data"/>
+                        <field name="content" filename="name" />
                     </group>
                     <group name="group_right">
                         <field name="sign_date"/>
                         <field name="sent_date"/>
+                        <field name="directory"/>
                     </group>
                 </group>
                 <notebook>

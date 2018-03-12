@@ -64,7 +64,7 @@
 
     <record id="action_doc_directory" model="ir.actions.act_window">
 	    <field name="name">Document Directories</field>
-	    <field name="res_model">muk_dms.directory</field>
+	    <field name="res_model">doc.direct</field>
 	    <field name="view_mode">kanban,tree,form</field>
     </record>
 
