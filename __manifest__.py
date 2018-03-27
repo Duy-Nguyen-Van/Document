@@ -1,10 +1,10 @@
 {
-	'name': 'Document PTN',
+	'name': 'Document Management',
 	'description': '[test]Manage your personal Document tasks.',
-	'author': 'Duy Nguyen',
+	'author': 'ISLab Team',
 	'depends': ['base','mail','hr'],
 	'application': True,
-	# 'images':['images/icon.png'],
+	'images':['images/icon.png'],
 	'data': [
 		'views/qlcv_menu.xml',
         'views/qlcv_view.xml',
