@@ -76,6 +76,6 @@
 	    <field name="tag">muk_dms_views.documents</field>
     </record>
 
-    <menuitem id="menu_doc_tree_view" name="Documents"
-	    parent="menu_doc_manage_task_view" action="action_doc_documents" sequence="8"/>
+    <!-- <menuitem id="menu_doc_tree_view" name="Documents"
+	    parent="menu_doc_manage_task_view" action="action_doc_documents" sequence="8"/> -->
 </data>

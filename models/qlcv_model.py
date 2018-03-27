@@ -51,7 +51,8 @@ class Document(models.Model):
          'doc.direct',
          string="Directory",
          ondelete='restrict',
-         auto_join=True)
+         auto_join=True,
+         required=True)
 
      @api.multi
      def action_document_send(self):
