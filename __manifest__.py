@@ -1,5 +1,5 @@
 {
-	'name': 'Document PTN',
+	'name': 'Document Management',
 	'description': '[test]Manage your personal Document tasks.',
 	'author': 'ISLab Team',
 	'depends': ['base','mail','hr','muk_dms'],
@@ -19,4 +19,6 @@
 		# 'data/doc_task.csv'
 		'data/doc_data.xml'
 	],
+	'qweb' : ['static/src/xml/qweb.xml'],
+	'css' : ['static/src/css/qweb.css'],
 }
