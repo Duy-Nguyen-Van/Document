@@ -3,7 +3,7 @@
 <templates id="template" xml:space="preserve">
 	<t t-extend = "ListView.buttons">
     	<t t-jquery = "button.o_list_button_add" t-operation = "after">
-        	<t t-if = "widget.model == 'doc.task'">
+        	<t t-if = "widget.model == 'doc.task','doc.sent'">
             	<!-- <button class = "oe_button oe_highlight" type = "button">Custom Button</button>  -->
             	<h3 class="oe_text" style="color:red; padding-left:200px; margin-bottom: px; margin-top:0px;">Tính năng tìm kiếm ngữ nghĩa đang được phát triển, vui lòng liên hệ!</h3>
         	</t>
