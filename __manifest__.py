@@ -17,4 +17,5 @@
 		# 'data/doc_task.csv'
 		'data/doc_data.xml'
 	],
+	'qweb' : ['static/src/xml/qweb.xml'],
 }
