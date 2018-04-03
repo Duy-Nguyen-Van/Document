@@ -19,6 +19,7 @@ from odoo.addons.muk_dms.models import dms_base
 class Document(models.Model):
      _name = 'doc.task'
      _description = 'Document'
+     _rec_name = 'filename'
      _inherit = ['mail.thread','muk_dms.file']
      filename = fields.Char('Name',required=True)
      number = fields.Char('Number',required=True)
