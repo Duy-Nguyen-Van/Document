@@ -1,11 +1,25 @@
 <?xml version="1.0"?>
 <odoo>
+    
+    <record model="muk_dms.settings" id="settings_a">
+      <field name="name">Demo</field>
+      <field name="save_type">database</field>
+    </record>
+
+    <record model="muk_dms.directory" id="directory_a">
+      <field name="name">Sales</field>
+      <field name="is_root_directory">True</field>
+      <field name="settings" ref="settings_a"></field>
+    </record>
+
+
     <record model="doc.task" id="todo_task_a">
       <field name="filename">A</field>
       <field name="number">1</field>
       <field name="type">Arrived</field>
       <field name="organization">8</field>
       <field name="department_id">1</field>
+      <field name="directory" ref="directory_a"></field>
     </record>
 
     <record model="doc.task" id="todo_task_b">
@@ -14,6 +28,7 @@
       <field name="type">Arrived</field>
       <field name="organization">4</field>
       <field name="department_id">2</field>
+     <field name="directory" ref="directory_a"></field>
     </record>
 
     <record model="doc.task" id="todo_task_c">
@@ -22,6 +37,7 @@
       <field name="type">Arrived</field>
       <field name="organization">5</field>
       <field name="department_id">3</field>
+      <field name="directory" ref="directory_a"></field>
     </record>
 
     <record model="doc.task" id="todo_task_d">
@@ -30,6 +46,7 @@
       <field name="type">Arrived</field>
       <field name="organization">6</field>
       <field name="department_id">4</field>
+      <field name="directory" ref="directory_a"></field>
     </record>
 
     <record model="doc.task" id="todo_task_e">
@@ -38,6 +55,7 @@
       <field name="type">Arrived</field>
       <field name="organization">7</field>
       <field name="department_id">5</field>
+      <field name="directory" ref="directory_a"></field>
     </record>
 
     <record model="doc.sent" id="doc_sent_a">
@@ -46,6 +64,7 @@
       <field name="type">Sent</field>
       <field name="organization">3</field>
       <field name="department_id">1</field>
+      <field name="directory" ref="directory_a"></field>
     </record>
 
     <record model="doc.sent" id="doc_sent_b">
@@ -54,6 +73,7 @@
       <field name="type">Sent</field>
       <field name="organization">4</field>
       <field name="department_id">2</field>
+      <field name="directory" ref="directory_a"></field>
     </record>
 
     <record model="doc.sent" id="doc_sent_c">
@@ -62,6 +82,7 @@
       <field name="type">Sent</field>
       <field name="organization">5</field>
       <field name="department_id">3</field>
+      <field name="directory" ref="directory_a"></field>
     </record>
 
     <record model="doc.sent" id="doc_sent_d">
@@ -70,5 +91,6 @@
       <field name="type">Sent</field>
       <field name="organization">6</field>
       <field name="department_id">4</field>
+      <field name="directory" ref="directory_a"></field>
     </record>
 </odoo>

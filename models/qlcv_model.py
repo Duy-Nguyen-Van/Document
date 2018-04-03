@@ -49,7 +49,7 @@ class Document(models.Model):
      ],string='Document Status', readonly=True, copy=False, store=True, default='draft')
      tag = fields.Many2many('tag.doc', string='Tag')
      directory = fields.Many2one(
-         'doc.direct',
+         'muk_dms.directory',
          string="Directory",
          ondelete='restrict',
          auto_join=True,
