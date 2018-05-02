@@ -1,5 +1,3 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-demo_admin, Model admin access,model_doc_task,group_manager,1,1,1,1
-demo_user, Model user access,model_doc_task,group_user,1,0,0,0
-demo_sent, Model admin access,model_doc_sent,group_manager,1,1,1,1
-demo_sent2, Model user access,model_doc_sent,group_user,1,0,0,0
+version https://git-lfs.github.com/spec/v1
+oid sha256:97466710c3548e37daf4162354ec84be3e20e7f4e1bf619aa243667b438fd4b2
+size 342

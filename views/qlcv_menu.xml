@@ -21,10 +21,17 @@
                 res_model="doc.sent"
                 view_mode="tree,form"/>
 
+    <act_window id="action_search_advanced"
+                name="Search Advanced"
+                res_model="se.advanced.auto"
+                view_mode="tree,form"/>
+
+
     <!-- Menu item to open Document Task list-->
     <menuitem id="menu_doc_task"
               name="Doc"
-              action="action_doc_task"/>
+              sequence="2"
+              web_icon="islabdocument,static/description/logo.png"/>
 
     <menuitem id="menu_doc_task_view"
               name="Document"
@@ -50,11 +57,16 @@
               action="action_department_task"
               parent="menu_doc_task"/>
 
-    <menuitem id="menu_report_task_view"
+    <menuitem id="menu_search_advanced_view"
+              name="Search Advanced"
+              sequence="25"
+              action="action_search_advanced"
+              parent="menu_doc_task"/>
+    <!-- <menuitem id="menu_report_task_view"
               name="Report"
               sequence="6"
               action="action_report_task"
-              parent="menu_doc_task"/>
+              parent="menu_doc_task"/> -->
 
     <menuitem id="menu_doc_manage_task_view"
               name="Document Management"

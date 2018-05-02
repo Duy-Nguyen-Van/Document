@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields,api
 from datetime import datetime
+
+#import sys
+#sys.path.append(odoo-dev/odoo/custom_addons/islabdocument/lsa)
+#import lsa.search.machine
 # import os
 # import re
 # import json
@@ -14,22 +18,34 @@ from datetime import datetime
 # from odoo.tools.mimetypes import guess_mimetype
 # from odoo.exceptions import ValidationError, AccessError
 
-from odoo.addons.muk_dms.models import dms_base
+#from odoo.addons.muk_dms.models import dms_base
+from lsa.search.machine import SearchMachine
+# from lsa.search.postgres import PostgreSQLBackend
+import csv
+import numpy as np 
+import pandas as pd
+import re
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer, TfidfTransformer
+from sklearn.decomposition import TruncatedSVD
+from sklearn.metrics.pairwise import cosine_similarity 
+import unicodedata
+
+
 
 class Document(models.Model):
      _name = 'doc.task'
      _description = 'Document'
      _rec_name = 'filename'
      _inherit = ['mail.thread','muk_dms.file']
-     filename = fields.Char('Name',required=True)
-     number = fields.Char('Number',required=True)
+     filename = fields.Char('Name')
+     number = fields.Char('Number')
      sign_date = fields.Datetime('Sign Date')
      sent_date = fields.Datetime('Sent Date')
      arrived_date = fields.Datetime('Arrived Date',default=datetime.today())
      # composer_id = fields.Many2one('hr.employee' , 'Composer')
      # approver_id = fields.Many2one('hr.employee' , 'Approver')
      # sender_id = fields.Many2one('hr.employee' , 'Sender')
-     organization = fields.Many2one('res.partner','Organization',required=True)
+     organization = fields.Many2one('res.partner','Organization')
      department_id = fields.Many2one('hr.department' , 'Department')
      type = fields.Char('Type',required=True, default='Arrived', readonly=True)
      otherinfor = fields.Text('Notes')
@@ -49,11 +65,10 @@ class Document(models.Model):
      ],string='Document Status', readonly=True, copy=False, store=True, default='draft')
      tag = fields.Many2many('tag.doc', string='Tag')
      directory = fields.Many2one(
-         'muk_dms.directory',
+         'doc.direct',
          string="Directory",
          ondelete='restrict',
-         auto_join=True,
-         required=True)
+         auto_join=True)
 
      @api.multi
      def action_document_send(self):
@@ -111,6 +126,102 @@ class Document(models.Model):
      def action_cancel(self):
          for doc in self:
              doc.state = 'cancel'
+
+     @api.multi
+     def get_content(self):
+         info_list = []
+         doc_list = self.env['doc.task'].search([])
+         ids = []
+         contents = []
+         for doc in doc_list:
+             ids.append(doc.id)
+             contents.append(doc.otherinfor)
+             # info_list.append(doc.otherinfor)
+         df = pd.DataFrame(doc_list)
+         df =pd.DataFrame({'data_id': ids, 'content': contents})
+         f = open('/home/odoo/odoo-dev/odoo/custom_addons/islabdocument/data/vietnamese_stopwords.txt')
+         stop_words = f.readlines()
+         stop_words = [x.strip('\n') for x in stop_words]
+         df = df.dropna(subset=['dense_content'])
+         tfidf_vec = TfidfVectorizer(stop_words=stop_words, min_df=1)
+         doc_term_matrix = tfidf_vec.fit_transform(df['content'])
+         df['dense_content'] = df['dense_content'].apply(lambda x: unicodedata.normalize('NFC', x))
+         df['dense_content'] = df['dense_content'].apply(lambda x: text_cleaner(x))
+
+         return
+
+
+     def text_cleaner(text):
+        text = re.sub('[\.]',' ', text)
+        text = re.sub('([^a-z0-9A-Z_ ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽếềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵýỷỹ])\W|\s\(|\(|\)',' ', text)
+        text = re.sub('\W',' ', text.lower())
+        text = re.sub('\d','', text)
+        text = re.sub('[\_]', ' ',text)
+        return text
+
+
+
+     def file_content(vietnamese_stopwords):
+     # downloaded = drive.CreateFile({'id': '1fHCjkDtRHOaoOn8zolv16uLOdNmeGkN1', 'name':'vietnamese-stopwords.txt'})
+     # downloaded = open('/home/odoo/odoo-dev/odoo/custom_addons/islabdocument/data/vietnamese-stopwords.txt')
+     # downloaded.GetContentFile('/home/odoo/odoo-dev/odoo/custom_addons/islabdocument/data/vietnamese-stopwords.txt')
+        with open('vietnamese_stopwords.txt') as f:
+            stop_words = f.readlines()
+            stop_words = [ x.strip('\n') for x in stop_words ]
+        return f.readlines()
+     # print(f)
+
+
+     def tfidf_vectorizer (search_query, min_df=1):
+        tfidf_vec = TfidfVectorizer(stop_words = stop_words, min_df=min_df)
+        doc_term_matrix = tfidf_vec.fit_transform(df['dense_content']) #
+        search_query_vec = tfidf_vec.transform([search_query])
+        return doc_term_matrix, search_query_vec
+
+     def SVD_lsa (search_query, n_components=300, min_df=1):
+        SVD = TruncatedSVD(n_components=n_components)
+        doc_term_matrix, search_query_vec = tfidf_vectorizer (search_query, min_df = min_df)
+
+        lsa_doc_term = SVD.fit_transform(doc_term_matrix)
+        search_query_lsa = SVD.transform(search_query_vec)
+
+        return lsa_doc_term, search_query_lsa
+
+     def grab_related_articles (search_query, n_results=5, n_components = 300, min_df=1):
+        lsa_doc_term, search_query_lsa = SVD_lsa(search_query, n_components=n_components, min_df=min_df)
+        cos_sim_arr = cosine_similarity(lsa_doc_term, search_query_lsa).ravel()
+
+        first_term = -1*(n_results) - 1
+        indices = (np.argsort(cos_sim_arr)[:first_term: -1])
+
+        while len(list(set(df['dense_content'].iloc[indices]))) < n_results:
+            first_term -= 1
+            indices = (np.argsort(cos_sim_arr)[:first_term: -1])
+        related_articles = list(set(df['dense_content'].iloc[indices]))
+        return related_articles
+
+
+     # grab_related_articles ('tuyển sinh trung học', n_results=10, n_components = 600, min_df=1)
+
+
+
+     # sm = SearchMachine(latent_dimensions=150, index_backend='lsa.keeper.backends.JsonIndexBackend',
+     #               keep_index_info={'path_to_index_folder': 'index'},
+     #               db_backend='lsa.db.ysql.MySQLBackend',
+     #               db_credentials={'db_name': 'news', 'user': 'user', 'password': 'user_big_password'},
+     #               tables_info={
+     #                   'news_news': {'fields': ('title', 'text'), 'pk_field_name': 'id', 'prefix': '', 'where': 'id < 300'}
+     #               },
+     #               decimals=3,
+     #               use_tf_idf=False
+     #               )
+
+     # sm.build_index()
+     # res = sm.search('natural language query', with_distances=True, limit=10)
+     # print(res)
+
+
+
 
 class Document_Sent(models.Model):
      _inherit = 'doc.task'
@@ -226,5 +337,6 @@ class Doc_directory(models.Model):
         'directory',
         copy=False,
         string="Files")
+
 
 

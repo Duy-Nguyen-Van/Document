@@ -13,6 +13,7 @@
                 <field name="state" widget="statusbar" statusbar_visible="draft,published,sent,done"/>
                 <button name="action_convert" states="sent" type="object" string="Confirm Done" class="btn-primary"/>
                 <button name="action_cancel" states="draft,sent" type="object" string="Cancel"/>
+                <button name="get_content" states="draft" type="object" string="Test"/>
             </header>
             <sheet>
                 <div class="oe_title">
@@ -213,7 +214,7 @@
         <field name="name">Documment Sent Search</field>
         <field name="model">doc.sent</field>
         <field name="arch" type="xml">
-            <search>
+            <search name="grab_related_articles">
                 <field name="name"/>
                 <field name="number"/>
                 <field name="tag"/>

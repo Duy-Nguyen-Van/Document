@@ -1,0 +1,16 @@
+- Decrease connectivity between keeper/DB-backend modules and search machine
+- Fix mechanist of plugging DB and keeper modules. Fixed names for built-in ones + custom classes as params
+- Divide SearchMachine into SearchMachine and IndexerMachine
+- Performance improvement
+    - Check matrix handling
+    - may be implement parallel matrix manipulations (multiplication, transposition)
+    - the more iterators, the more pink pony
+- Features
+    - ability to provide full sql query for DB backend + simplified mode (just table name and id field)
+    - ability to provide custom stop words collections
+    - more stemmers from nltk library
+    - normalizers from nltk library
+    - improve search algorithm (calculate distances to part of space, not to any document)
+    - html cleaner
+    - other doc types support
+    - limit search results

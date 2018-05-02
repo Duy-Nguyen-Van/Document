@@ -1,0 +1,14 @@
+literature/
+.idea/
+*.pyc
+*.pyo
+venv/
+tst*.py
+semantic_space.png
+#/fill
+little.db
+index/
+index_*/
+test*.py
+some.txt
+*.sql

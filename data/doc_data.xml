@@ -6,7 +6,7 @@
       <field name="save_type">database</field>
     </record>
 
-    <record model="muk_dms.directory" id="directory_a">
+    <record model="doc.direct" id="directory_a">
       <field name="name">Sales</field>
       <field name="is_root_directory">True</field>
       <field name="settings" ref="settings_a"></field>

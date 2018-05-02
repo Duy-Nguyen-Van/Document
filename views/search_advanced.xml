@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_form_search_advanced_ato_matic" model="ir.ui.view">
+        <field name="name">Search Advanced Form</field>
+        <field name="model">se.advanced.auto</field>
+        <field name="arch" type="xml">
+            <form string="Search Advanced">
+                <header>
+                    <!--<button name="action_search_auto" type="object" string="Search Advanced"/>-->
+                    <button name="action_search_auto"  type="object" string="Search Advanced" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="search1" />
+                        <!--<field name="result2" />-->
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_search_advanced_ato_matic" model="ir.ui.view">
+        <field name="name">Search Advanced Tree</field>
+        <field name="model">se.advanced.auto</field>
+        <field name="arch" type="xml">
+            <tree string="Search Advanced">
+                <field name="search1" />
+                <!--<field name="result2" />-->
+            </tree>
+        </field>
+    </record>
+</odoo>

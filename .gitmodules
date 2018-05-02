@@ -1,0 +1,3 @@
+[submodule "lsa"]
+	path = lsa
+	url = https://github.com/Skycker/lsa
