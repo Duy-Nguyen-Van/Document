@@ -90,12 +90,15 @@ class SearchAdvanced(models.Model):
         #     'domain':"['id','in',%s]" %(a),
         # }
         return {
-            'view_type': 'tree',
-            'view_mode': 'tree',
-            'view_id': self.env.ref('islabdocument.view_tree_doc_task').id,
+            'view_type': 'form',
+            'view_mode': 'tree,form',
+            # 'view_id': 'False',
+            'view-id': [(self.env.ref('islabdocument.view_tree_doc_task').id),(self.env.ref('islabdocument.view_form_doc_task').id)],
             'res_model': 'doc.task',
             'domain': [('id', 'in', a)],
             'type': 'ir.actions.act_window',
-            # 'target': 'current',
+            'target': 'current',
+            # 'context': 'context',
+
         }
 
