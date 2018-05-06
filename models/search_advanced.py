@@ -73,7 +73,7 @@ class SearchAdvanced(models.Model):
         df.set_index('data_id')
         df['dense_content'] = df['dense_content'].apply(lambda x: unicodedata.normalize('NFC', x))
         df['dense_content'] = df['dense_content'].apply(lambda x: self.text_cleaner(x))
-        a = self.grab_related_articles(content,df, n_results=5, n_components=6, min_df=1)
+        a = self.grab_related_articles(content,df, n_results=5, n_components=600, min_df=1)
         result = []
         tup_a = tuple(a)
         for doc in doc_list:
