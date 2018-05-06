@@ -201,7 +201,7 @@
         <field name="model">doc.task</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name"/>
+                <field name="filename"/>
                 <field name="number"/>
                 <field name="tag"/>
                 <field name="otherinfor"/>
@@ -214,7 +214,7 @@
         <field name="model">doc.sent</field>
         <field name="arch" type="xml">
             <search name="grab_related_articles">
-                <field name="name"/>
+                <field name="filename"/>
                 <field name="number"/>
                 <field name="tag"/>
                 <field name="otherinfor"/>
