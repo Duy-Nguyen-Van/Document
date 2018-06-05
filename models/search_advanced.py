@@ -49,12 +49,16 @@ class SearchAdvanced(models.Model):
     def grab_related_articles(self,search_query,df, n_results=5, n_components=300, min_df=1):
         lsa_doc_term, search_query_lsa = self.SVD_lsa(search_query,df, n_components=n_components, min_df=min_df)
         cos_sim_arr = cosine_similarity(lsa_doc_term, search_query_lsa).ravel()
-
+        # print (len(cos_sim_arr))
         first_term = -1 * (n_results) - 1
+        # print (first_term)
         indices = (np.argsort(cos_sim_arr)[:first_term: -1])
-        while len(list(set(df['dense_content'].iloc[indices]))) < n_results:
-            first_term -= 1
-            indices = (np.argsort(cos_sim_arr)[:first_term: -1])
+        if cos_sim_arr[indices[0 - n_results]] > 0:
+            while len(list(set(df['dense_content'].iloc[indices]))) < n_results:
+                first_term -= 1
+                indices = (np.argsort(cos_sim_arr)[:first_term: -1])
+        else:
+            indices = []
         related_articles = list(set(df['data_id'].iloc[indices]))
         return related_articles
 
@@ -79,7 +83,7 @@ class SearchAdvanced(models.Model):
         for doc in doc_list:
             if doc.id in a:
                 result.append(doc)
-        print(result)
+        # print(result)
         # return {
         #     'res_model': 'doc.task',
         #     'view_type':'tree',
